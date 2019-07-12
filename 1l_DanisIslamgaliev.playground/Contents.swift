@@ -15,7 +15,7 @@ let c: Double = 7.0
 let cor_1: Double
 let cor_2: Double
 
-// Нахождим дискриминанта
+// Находим дискриминанта
 var Disc: Int
 var i = pow(Double(b),2)
 Disc = Int(i - (4 * a * c))
