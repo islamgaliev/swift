@@ -15,12 +15,12 @@ let c: Double = 7.0
 let cor_1: Double
 let cor_2: Double
 
-// Находим дискриминанта
+// Находим дискриминант
 var Disc: Int
 var i = pow(Double(b),2)
 Disc = Int(i - (4 * a * c))
 
-// Нахождим корни
+// Находим корни
 if Disc > 0 {
     cor_1 = (-b + sqrt(Double(Disc))) / (2 * a)
     cor_2 = (-b - sqrt(Double(Disc))) / (2 * a)
