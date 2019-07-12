@@ -11,7 +11,7 @@ let a: Double = 5.0
 let b: Double = 3.0
 let c: Double = 7.0
 
-// Корни
+// Объявляем Корни
 let cor_1: Double
 let cor_2: Double
 
