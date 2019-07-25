@@ -1,58 +1,123 @@
 import UIKit
 
-
-enum HondaDoorState {
-    case open, close
-}
-enum Transmission {
-    case manual, auto
-}
-struct Honda {
-    let color: UIColor
-    let mp3: Bool
-    let transmission: Transmission
-    var km: Double
-    var doorState: HondaDoorState
-}
-let car1 = Honda(color: .white, mp3: true, transmission: .auto, km: 0.0, doorState: .close)
-let car2 = Honda(color: .black, mp3: true, transmission: .manual, km: 120.0, doorState: .close)
-let car3 = Honda(color: .red, mp3: false, transmission: .manual, km: 0.0, doorState: .open)
-let car4 = Honda(color: .green, mp3: true, transmission: .auto, km: 0.0, doorState: .close)
-
-
-
-enum BmwMotorStatus {
+enum MotorStatus {
     case start, stop
 }
 
-enum BmwWindowStatus {
+enum WindowStatus {
     case open, close
 }
 
-enum BaggageStatus: Double {
-    case full = 34.5
-    case nofull = 10.7
+enum baggageStatus {
+    case full, empty
 }
 
-struct BmwCar {
+struct AnyCar {
     let label: String
+    let mod: String
+    var color: String
+    
+    mutating func viewColor(col:String) {
+        switch col {
+        case "yellow":
+            self.color = "yellow"
+        case "white":
+            self.color = "white"
+        case "black":
+            self.color = "black"
+        case "blue":
+            self.color = "blue"
+        default:
+            print("Ошибка ввода")
+        }
+    }
     let born: Int
-    let volume: Double
-    var bmwstatusmotor: BmwMotorStatus
-    var bmwstatuswindow: BmwWindowStatus
-    var baggagestate: BaggageStatus
-    
-    init(label: String, born: Int, volume: Double, bmwstatusmotor: BmwMotorStatus, bmwstatuswindow: BmwWindowStatus) {
-        self.label = "BMW"
-        self.born = 2018
-        self.volume = 44.0
-        self.bmwstatusmotor = bmwstatusmotor
-        self.bmwstatuswindow = bmwstatuswindow
-        
+    var bagState: Double {
+        willSet {
+            if (baggageStatus == .empty) && (bagState > 0) && (bagState != 0) && (newValue < bagState){
+                let space = bagState - newValue
+                print ("\(label) багажник свободен: \(space)")
+            } else { print("ошибка ввода или \(label) багажник полный.")}
+        }
     }
     
-    mutating func bagState() {
-        self.baggagestate = baggagestate == .full ? .nofull : .full
+    var MotorStatus: MotorStatus {
+        willSet {
+            if newValue == .start {
+                print("\(label) Двигатель запущен")
+            } else {print("\(label) Двигатель заглушен")}
+        }
     }
+    
+    var WindowStatus: WindowStatus {
+        willSet {
+            if newValue == .open {
+                print("\(label) Окно открыто")
+            } else {print("\(label) Окно закрыто")}
+        }
+    }
+    
+    var motorStatus: MotorStatus
+    mutating func MotorStop(){
+        self.MotorStatus = .stop
+        print("\(label) Двигатель заглушен")
+    }
+    
+
 }
 
+struct AnyTruck {
+    let label: String
+    var statusmotor: MotorStatus
+    var statuswindow: WindowStatus
+    var color: String
+    
+    mutating func ViewColor(col:String) {
+        switch col {
+        case "yellow":
+            self.color = "yellow"
+        case "white":
+            self.color = "white"
+        case "black":
+            self.color = "black"
+        default:
+            print("Ошибка ввода")
+        }
+    }
+    
+    let born: Int
+    var baggageState: Double {
+        willSet {
+            if (BaggageStatus == .empty && baggageState > 0 && baggageState != 0 && newValue < baggageState){
+                let space = baggageState - newValue
+                print ("\(label) багажник свободен: \(space)")
+            } else { print("ошибка ввода или \(label) багажник полный.")}
+        }
+    }
+    
+    var MotorStatus: MotorStatus {
+        willSet {
+            if newValue == .start {
+                print("\(label) Двигатель запущен")
+            } else {print("\(label) Двигатель заглушен")}
+        }
+    }
+    
+    var WindowStatus: WindowStatus {
+        willSet {
+            if newValue == .open {
+                print("\(label) Окно открыто")
+            } else {print("\(label) Окно закрыто")}
+        }
+    }
+    
+    var motorStatus: MotorStatus
+    mutating func MotorStop(){
+        self.MotorStatus = .stop
+        print("\(label) Двигатель заглушен")
+    }
+    
+    
+}
+
+var car1 = AnyCar(label: "BMW", born: 2018, color: "Clear", baggageState: 200.0, MotorStatus: .stop, WindowStatus: .close, BaggageStatus: .empty)
