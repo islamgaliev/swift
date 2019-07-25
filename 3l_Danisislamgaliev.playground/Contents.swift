@@ -8,7 +8,7 @@ enum WindowStatus {
     case open, close
 }
 
-enum baggageStatus {
+enum BaggageStatus {
     case full, empty
 }
 
@@ -17,7 +17,7 @@ struct AnyCar {
     let mod: String
     var color: String
     
-    mutating func viewColor(col:String) {
+    mutating func ViewColor(col:String) {
         switch col {
         case "yellow":
             self.color = "yellow"
@@ -25,17 +25,15 @@ struct AnyCar {
             self.color = "white"
         case "black":
             self.color = "black"
-        case "blue":
-            self.color = "blue"
         default:
             print("Ошибка ввода")
         }
     }
     let born: Int
-    var bagState: Double {
+    var baggageState: Double {
         willSet {
-            if (baggageStatus == .empty) && (bagState > 0) && (bagState != 0) && (newValue < bagState){
-                let space = bagState - newValue
+            if (BaggageStatus == .empty) && (baggageState > 0) && (baggageState != 0) && (newValue < baggageState){
+                let space = baggageState - newValue
                 print ("\(label) багажник свободен: \(space)")
             } else { print("ошибка ввода или \(label) багажник полный.")}
         }
@@ -57,10 +55,10 @@ struct AnyCar {
         }
     }
     
-    var motorStatus: MotorStatus
-    mutating func MotorStop(){
-        self.MotorStatus = .stop
-        print("\(label) Двигатель заглушен")
+    var BaggageStatus: BaggageStatus
+    mutating func emptyBaggage() {
+        self.BaggageStatus = .empty
+        print("\(label) багажник пустой")
     }
     
 
@@ -111,13 +109,28 @@ struct AnyTruck {
         }
     }
     
-    var motorStatus: MotorStatus
-    mutating func MotorStop(){
-        self.MotorStatus = .stop
-        print("\(label) Двигатель заглушен")
+    var BaggageStatus: BaggageStatus
+    mutating func emptyBaggage() {
+        self.BaggageStatus = .empty
+        print("\(label) багажник пустой")
     }
     
     
 }
 
-var car1 = AnyCar(label: "BMW", born: 2018, color: "Clear", baggageState: 200.0, MotorStatus: .stop, WindowStatus: .close, BaggageStatus: .empty)
+var auto = AnyCar(label: "BMW", mod: "M8", color: "Clear", born: 2018, baggageState: 200.0, MotorStatus: .stop, WindowStatus: .open, BaggageStatus: .empty)
+var truck = AnyCar(label: "Man", mod: "9", color: "black", born: 2016, baggageState: 1000.0, MotorStatus: .start, WindowStatus: .close, BaggageStatus: .full)
+
+auto.baggageState = 100.0
+auto.MotorStatus = .start
+auto.WindowStatus = .close
+auto.ViewColor(col: "black")
+auto.emptyBaggage()
+
+truck.baggageState = 840.0
+truck.MotorStatus = .stop
+truck.WindowStatus = .open
+truck.ViewColor(col: "yellow")
+truck.emptyBaggage()
+
+
