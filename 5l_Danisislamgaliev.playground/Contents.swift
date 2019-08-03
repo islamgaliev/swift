@@ -1,5 +1,9 @@
 import UIKit
 
+enum ActWithCar {
+    case opendoor, closedoor, openwindow, closewindow, startenine, stopengine
+}
+
 
 protocol Car {
     
@@ -8,12 +12,22 @@ protocol Car {
     var type: String {get set}
     var speed: Int {get}
     
+    //действия с автомобилем
+    
     func getTypeCar()
     func getSpeedCar()
+    func getColorCar()
+}
+
+extension Car {
+    func Door(){
+        ActWithCar = .opendoor
+    }
 }
 
 
 class CarType: Car {
+    
     
     var label: String = "BMW"
     var Color: String = "black"
@@ -29,16 +43,19 @@ class CarType: Car {
         print("скорость машины: \(speed)")
     }
     
+    func getColorCar() {
+        print("Цвет машины: \(Color)")
+    }
+    
     
 }
 
-extension CarType {
-    
-}
+
 
 let car1 = CarType()
 car1.getSpeedCar()
 car1.getTypeCar()
+car1.getColorCar()
 
 
 
