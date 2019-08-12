@@ -11,6 +11,7 @@ protocol Car {
     var Color: String {get set}
     var type: String {get set}
     var speed: Int {get}
+    var opendoor: ActWithCar {get set}
     
     //действия с автомобилем
     
@@ -21,14 +22,14 @@ protocol Car {
 
 extension Car {
     func Door(){
-        ActWithCar = .opendoor
+        
     }
 }
 
 
 class CarType: Car {
     
-    
+    var opendoor: ActWithCar = .opendoor
     var label: String = "BMW"
     var Color: String = "black"
     var type: String = "Big"
