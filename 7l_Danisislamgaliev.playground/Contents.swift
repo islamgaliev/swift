@@ -1,98 +1,104 @@
-
-enum PrintFioMode: String {
-    case full = "Полное имя: "
-    case middle = "Имя и фамилия: "
-    case short = "Фамилия: "
+// возможные ошибки при попытке оплатить кредиткой
+enum CreditCardOperationError: Error {
+    // ошибка: недостаточно средств на карте
+    case insufficientFunds (moneyNeeded: Double)
+    // ошибка: баланс карточки заморожен банков по каким-то причинам
+    case frozenBalance
 }
 
-let fio = [
-    ("Иванов", "Иван", "Иванович"),
-    ("Сидоров", "Иван", "Петрович"),
-    ("Игорев", "Игорь", "Владимирович")
-]
+// вещь, которую мы хотим приобрести, имеет цену
+struct thing {
+    var price: Double
+}
 
-func printFio(_ fio: [(String, String, String)], mode: PrintFioMode) {
+
+class CreditCardOperation {
+    //зафиксированный лимит для этой карты
+    let limit: Double = -30000
+    // изначальный баланс
+    var balance: Double = 0
+    // состояние карты, наша карта может быть заблокирована банком
+    var cardIsBlocked = false
     
-    for i in fio {
-        switch mode {
-        case .full:
-            print(mode.rawValue, i.0, i.1, i.2)
-        case .middle:
-            print(mode.rawValue,i.0, i.1)
-        case .short:
-            print(mode.rawValue,i.0)
+    // пытаемся приобрести вещь
+    func buySomethig(thing: thing)throws {
+        guard cardIsBlocked == false else{
+            throw CreditCardOperationError.frozenBalance
+        }
+        // провека на возможность позволить купить себе эту вещь
+        guard thing.price <= (-limit + self.balance) else {
+            //рассчитывает необходимый остаток средств на карте с учётом лимита
+            if balance < 0 {
+                throw CreditCardOperationError.insufficientFunds(moneyNeeded: thing.price + limit + balance)
+            } else {
+                throw CreditCardOperationError.insufficientFunds(moneyNeeded: thing.price + limit - balance)
+            }
+        }
+        // списываем деньги за вещь с карты
+        balance = self.balance - thing.price
+    }
+    
+    // функция для внесения какой-либо суммы денег
+    func depositeMoney (someMoney: Double) {
+        balance = self.balance + someMoney
+    }
+    
+    // функция "узнай свой баланс"
+    func printBalance() {
+        print ("Balance is \(balance) rub")
+    }
+    
+    // банк может заблокировать нашу карту
+    func changeCardState(cardIsBlocked: Bool) {
+        switch cardIsBlocked {
+        case true:
+            self.cardIsBlocked = true
+        case false:
+            self.cardIsBlocked = false
         }
     }
 }
 
-printFio(fio, mode: .full)
-
-enum DoorState: String {
-    case open = "Открыты"
-    case close = "Закрыты"
-}
-
-enum EngineState {
-    case start, stop
-}
-
-struct Car {
-    // private fileprivate internal public open
-    private var color: String
-    var odo: Int = 0
-    let doorCount: Int
-
-    var doorState: DoorState {
-        didSet {
-            print("Двери были \(oldValue.rawValue.lowercased())")
-        }
-        willSet {
-            print("Двери до этого были \(doorState.rawValue.lowercased())")
-        }
-    }
-    var engineState: EngineState
-    
-    init(color: String, odo: Int? = nil, doorCount: Int, doorState: DoorState, engineState: EngineState) {
-        self.color = color
-        self.doorCount = doorCount
-        self.odo = odo ?? 0
-        self.doorState = doorState
-        self.engineState = engineState
-    }
-    
-    mutating func changeDoorState() {
-        self.doorState = doorState == .open ? .close : .open
-    }
-    
-    mutating func changeColor(newColor: String) {
-        self.color = newColor
-        print(self.color)
-    }
-}
-
-var car = Car(color: "Yellow", odo: 10000, doorCount: 3, doorState: .close, engineState: .stop)
-
-car.doorState = .open
-car.changeDoorState()
-car.changeColor(newColor: "Black")
-
-
-struct Circle {
-    
-    var radius: Double
-    
-    var diametr: Double {
-        get {
-           return radius * 2
-        }
-        set {
-           radius = newValue / 2
+// ключевое улучшение кода: описанияе ошибок, чтобы упростить себе жизнь и вызов docatch()
+extension CreditCardOperationError: CustomStringConvertible {
+    var description: String {
+        switch self {
+        case .insufficientFunds(let moneyNeeded): return "There is not enough money on the card to carry out this operation. Your balance: \(operation.balance) rub, indispensably: \(moneyNeeded) rub"
+        case .frozenBalance: return "Your balance is frozen for some reason. For more information, please contact the Bank."
         }
     }
 }
 
-var circ = Circle(radius: 10)
-print(circ.diametr)
 
-circ.diametr = 15
-print(circ.radius)
+//балуемся с  нашей картой
+let operation = CreditCardOperation()
+do {
+    try operation.buySomethig(thing: .init(price: 890.7))
+} catch let error as CreditCardOperationError {
+    print(error.description)
+}
+operation.printBalance()
+operation.depositeMoney(someMoney: 10000)
+operation.printBalance()
+do {
+    try operation.buySomethig(thing: .init(price: 70000))
+} catch let error as CreditCardOperationError {
+    print(error.description)
+}
+operation.printBalance()
+do {
+    try operation.buySomethig(thing: .init(price: 39109.3))
+} catch let error as CreditCardOperationError {
+    print(error.description)
+}
+operation.printBalance()
+
+// банку не понравилось, что у нас такой отрицательный баланс и он заподозрил подозрительную активность по нашей карточке. Результат - баланс заморожен.
+operation.changeCardState(cardIsBlocked: true)
+
+// ничего не подозревая, мы пытаемся купить что-то на 90 рублей.
+do {
+    try operation.buySomethig(thing: .init(price: 90))
+} catch let error as CreditCardOperationError {
+    print(error.description)
+}
