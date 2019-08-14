@@ -60,8 +60,12 @@ class LoginFormController: UIViewController {
         
         if login == "admin" && pass == "0000" {
             print("Успешно")
+            self.performSegue(withIdentifier: "loginSucces", sender: nil)
         } else {
             print("Ошибка данных")
+            let alert = UIAlertController(title: "Error", message: "Error login or pass", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: {_ in print("Ok Tap")}))
+            self.present(alert, animated: true, completion: nil)
         }
         
     }
