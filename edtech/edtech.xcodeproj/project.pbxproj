@@ -14,6 +14,9 @@
 		0042127323003DA1005BC018 /* edtechTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0042127223003DA1005BC018 /* edtechTests.swift */; };
 		0042127E23003DA1005BC018 /* edtechUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0042127D23003DA1005BC018 /* edtechUITests.swift */; };
 		0042128E23003F88005BC018 /* LoginFormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0042128D23003F88005BC018 /* LoginFormController.swift */; };
+		0053AE4223083C3A0078F1EE /* AllCitiesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0053AE4123083C3A0078F1EE /* AllCitiesVC.swift */; };
+		0053AE45230840320078F1EE /* CityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0053AE44230840320078F1EE /* CityCell.swift */; };
+		0053AE4823084D0F0078F1EE /* FullCitiesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0053AE4723084D0E0078F1EE /* FullCitiesVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,7 +49,10 @@
 		0042127923003DA1005BC018 /* edtechUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = edtechUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0042127D23003DA1005BC018 /* edtechUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = edtechUITests.swift; sourceTree = "<group>"; };
 		0042127F23003DA1005BC018 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0042128D23003F88005BC018 /* LoginFormController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFormController.swift; sourceTree = "<group>"; };
+		0042128D23003F88005BC018 /* LoginFormController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginFormController.swift; path = ../LoginFormController.swift; sourceTree = "<group>"; };
+		0053AE4123083C3A0078F1EE /* AllCitiesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCitiesVC.swift; sourceTree = "<group>"; };
+		0053AE44230840320078F1EE /* CityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityCell.swift; sourceTree = "<group>"; };
+		0053AE4723084D0E0078F1EE /* FullCitiesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullCitiesVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,11 +104,11 @@
 			isa = PBXGroup;
 			children = (
 				0042125D23003D9F005BC018 /* AppDelegate.swift */,
+				0053AE4023083BBF0078F1EE /* Controllers */,
 				0042126123003D9F005BC018 /* Main.storyboard */,
 				0042126423003DA0005BC018 /* Assets.xcassets */,
 				0042126623003DA0005BC018 /* LaunchScreen.storyboard */,
 				0042126923003DA0005BC018 /* Info.plist */,
-				0042128D23003F88005BC018 /* LoginFormController.swift */,
 			);
 			path = edtech;
 			sourceTree = "<group>";
@@ -123,6 +129,33 @@
 				0042127F23003DA1005BC018 /* Info.plist */,
 			);
 			path = edtechUITests;
+			sourceTree = "<group>";
+		};
+		0053AE4023083BBF0078F1EE /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				0053AE4623084CB80078F1EE /* FullCities */,
+				0053AE4323083CB60078F1EE /* AllCitiesVC */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		0053AE4323083CB60078F1EE /* AllCitiesVC */ = {
+			isa = PBXGroup;
+			children = (
+				0053AE4123083C3A0078F1EE /* AllCitiesVC.swift */,
+				0053AE44230840320078F1EE /* CityCell.swift */,
+			);
+			path = AllCitiesVC;
+			sourceTree = "<group>";
+		};
+		0053AE4623084CB80078F1EE /* FullCities */ = {
+			isa = PBXGroup;
+			children = (
+				0042128D23003F88005BC018 /* LoginFormController.swift */,
+				0053AE4723084D0E0078F1EE /* FullCitiesVC.swift */,
+			);
+			path = FullCities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,6 +290,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				0042125E23003D9F005BC018 /* AppDelegate.swift in Sources */,
+				0053AE4223083C3A0078F1EE /* AllCitiesVC.swift in Sources */,
+				0053AE4823084D0F0078F1EE /* FullCitiesVC.swift in Sources */,
+				0053AE45230840320078F1EE /* CityCell.swift in Sources */,
 				0042128E23003F88005BC018 /* LoginFormController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
