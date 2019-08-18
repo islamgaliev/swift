@@ -25,6 +25,11 @@ class AllCitiesVC: UIViewController {
         performSegue(withIdentifier: "ToSelect", sender: nil)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let vc = segue.destination as! FullCitiesVC
+        vc.delegate = self
+    }
+    
 }
 
 extension AllCitiesVC: UITableViewDataSource {
@@ -39,4 +44,12 @@ extension AllCitiesVC: UITableViewDataSource {
         return cell
     }
     
+}
+
+extension AllCitiesVC: FullCitiesDelegate {
+    
+    func vc(_ vc: FullCitiesVC, didSelectCity city: String) {
+        cities.append(city)
+        tableView.reloadData()
+    }
 }
