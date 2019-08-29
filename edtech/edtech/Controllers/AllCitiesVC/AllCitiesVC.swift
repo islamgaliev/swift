@@ -52,4 +52,5 @@ extension AllCitiesVC: FullCitiesDelegate {
         cities.append(city)
         tableView.reloadData()
     }
+    
 }

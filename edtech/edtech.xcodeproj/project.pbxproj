@@ -14,6 +14,9 @@
 		0042127323003DA1005BC018 /* edtechTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0042127223003DA1005BC018 /* edtechTests.swift */; };
 		0042127E23003DA1005BC018 /* edtechUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0042127D23003DA1005BC018 /* edtechUITests.swift */; };
 		0042128E23003F88005BC018 /* LoginFormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0042128D23003F88005BC018 /* LoginFormController.swift */; };
+		004EE58123154D9300DCD1FB /* MyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004EE57F23154D9300DCD1FB /* MyCell.swift */; };
+		004EE58223154D9300DCD1FB /* MyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 004EE58023154D9300DCD1FB /* MyCell.xib */; };
+		004EE585231568B300DCD1FB /* Subjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004EE584231568B300DCD1FB /* Subjects.swift */; };
 		0053AE4223083C3A0078F1EE /* AllCitiesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0053AE4123083C3A0078F1EE /* AllCitiesVC.swift */; };
 		0053AE45230840320078F1EE /* CityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0053AE44230840320078F1EE /* CityCell.swift */; };
 		0053AE4823084D0F0078F1EE /* FullCitiesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0053AE4723084D0E0078F1EE /* FullCitiesVC.swift */; };
@@ -50,6 +53,9 @@
 		0042127D23003DA1005BC018 /* edtechUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = edtechUITests.swift; sourceTree = "<group>"; };
 		0042127F23003DA1005BC018 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0042128D23003F88005BC018 /* LoginFormController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginFormController.swift; path = ../LoginFormController.swift; sourceTree = "<group>"; };
+		004EE57F23154D9300DCD1FB /* MyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCell.swift; sourceTree = "<group>"; };
+		004EE58023154D9300DCD1FB /* MyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyCell.xib; sourceTree = "<group>"; };
+		004EE584231568B300DCD1FB /* Subjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subjects.swift; sourceTree = "<group>"; };
 		0053AE4123083C3A0078F1EE /* AllCitiesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCitiesVC.swift; sourceTree = "<group>"; };
 		0053AE44230840320078F1EE /* CityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityCell.swift; sourceTree = "<group>"; };
 		0053AE4723084D0E0078F1EE /* FullCitiesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullCitiesVC.swift; sourceTree = "<group>"; };
@@ -131,9 +137,27 @@
 			path = edtechUITests;
 			sourceTree = "<group>";
 		};
+		004EE57E23154CF400DCD1FB /* MyCell */ = {
+			isa = PBXGroup;
+			children = (
+				004EE57F23154D9300DCD1FB /* MyCell.swift */,
+				004EE58023154D9300DCD1FB /* MyCell.xib */,
+			);
+			path = MyCell;
+			sourceTree = "<group>";
+		};
+		004EE5832315688500DCD1FB /* Subjects */ = {
+			isa = PBXGroup;
+			children = (
+				004EE584231568B300DCD1FB /* Subjects.swift */,
+			);
+			path = Subjects;
+			sourceTree = "<group>";
+		};
 		0053AE4023083BBF0078F1EE /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				004EE5832315688500DCD1FB /* Subjects */,
 				0053AE4623084CB80078F1EE /* FullCities */,
 				0053AE4323083CB60078F1EE /* AllCitiesVC */,
 			);
@@ -143,6 +167,7 @@
 		0053AE4323083CB60078F1EE /* AllCitiesVC */ = {
 			isa = PBXGroup;
 			children = (
+				004EE57E23154CF400DCD1FB /* MyCell */,
 				0053AE4123083C3A0078F1EE /* AllCitiesVC.swift */,
 				0053AE44230840320078F1EE /* CityCell.swift */,
 			);
@@ -263,6 +288,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0042126823003DA0005BC018 /* LaunchScreen.storyboard in Resources */,
+				004EE58223154D9300DCD1FB /* MyCell.xib in Resources */,
 				0042126523003DA0005BC018 /* Assets.xcassets in Resources */,
 				0042126323003D9F005BC018 /* Main.storyboard in Resources */,
 			);
@@ -289,9 +315,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				004EE585231568B300DCD1FB /* Subjects.swift in Sources */,
 				0042125E23003D9F005BC018 /* AppDelegate.swift in Sources */,
 				0053AE4223083C3A0078F1EE /* AllCitiesVC.swift in Sources */,
 				0053AE4823084D0F0078F1EE /* FullCitiesVC.swift in Sources */,
+				004EE58123154D9300DCD1FB /* MyCell.swift in Sources */,
 				0053AE45230840320078F1EE /* CityCell.swift in Sources */,
 				0042128E23003F88005BC018 /* LoginFormController.swift in Sources */,
 			);
